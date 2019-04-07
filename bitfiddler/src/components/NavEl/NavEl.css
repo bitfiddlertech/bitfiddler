@@ -1,0 +1,24 @@
+.nav-li {
+  display: inline;
+  float: left;
+}
+
+.nav-el {
+  display: inline-block;
+  padding: 1.2em;  text-decoration: none;
+  background-color: #13aa55;
+  color: white;
+  transition: .3s;
+}
+
+.nav-el:hover {
+  color: #ffd333;
+  transition: .3s;
+}
+
+/* .sticky-nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+} */

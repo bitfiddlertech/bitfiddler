@@ -1,0 +1,42 @@
+.nav-ul {
+  background-color: #13aa55;
+  overflow: hidden;
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+  position: fixed;
+  float: left;
+}
+
+.title-nav-li {
+  display: inline;
+  float: left;
+  transition: .3s;
+}
+
+.title-nav-el {
+  /* Use this font (more "programmy") or original (more "friendly")? */
+  /* font-family: "Courier New", Courier, monospace;*/
+  font-family: "Helvetica Neue", Helvetica, monospace;
+  background-color: #13aa55;
+  padding: 1.2rem;
+  color: white;
+  display: inline-block;
+  float: left;
+  text-decoration: none;
+  font-size: 1.3em;
+  padding: none;
+  font-weight: bold;
+  transition: .3s;
+}
+
+.title-nav-el:hover {
+  color: #ffd333;
+  font-size: 1.4em; 
+  transition: .3s;
+}
+
+.logo {
+  padding-top: 0.2em;
+  cursor: pointer;
+}
