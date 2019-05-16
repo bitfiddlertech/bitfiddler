@@ -6,6 +6,7 @@
   width: 100%;
   position: fixed;
   float: left;
+  top: 0; 
 }
 
 .title-nav-li {
@@ -19,6 +20,7 @@
   /* font-family: "Courier New", Courier, monospace;*/
   font-family: "Helvetica Neue", Helvetica, monospace;
   background-color: #13aa55;
+  border-bottom: 5px solid #13aa55;
   padding: 1.2rem;
   color: white;
   display: inline-block;
@@ -31,12 +33,19 @@
 }
 
 .title-nav-el:hover {
-  color: #ffd333;
-  font-size: 1.4em; 
+  color: #11f;
+  font-size: 1.4em;
   transition: .3s;
 }
 
 .logo {
   padding-top: 0.2em;
   cursor: pointer;
+  transition: .2s;
+}
+
+.logo:hover {
+  width: 55px;
+  height: 55px;
+  transition: .2s;
 }

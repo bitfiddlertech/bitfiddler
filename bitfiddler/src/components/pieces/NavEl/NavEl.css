@@ -5,14 +5,19 @@
 
 .nav-el {
   display: inline-block;
-  padding: 1.2em;  text-decoration: none;
+  padding: 1.2em;
+  text-decoration: none;
   background-color: #13aa55;
+  border-bottom: 2px solid #13aa55;
   color: white;
   transition: .3s;
 }
 
 .nav-el:hover {
-  color: #ffd333;
+  color: #11f;
+  border-bottom: 2px solid #11f;
+  margin-left: 10px;
+  text-decoration: none; 
   transition: .3s;
 }
 
