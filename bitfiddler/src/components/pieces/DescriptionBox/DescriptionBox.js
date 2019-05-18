@@ -5,17 +5,20 @@ class DescriptionBox extends Component {
   constructor(props) {
     super(props);
 
+    this.onBoxClick = this.onBoxClick.bind(this);
+  }
+  onBoxClick() {
   }
   render() {
     console.log(this.props);
     return (
-      <div className="box">
-        <h1>{this.props.data.title}</h1>
-        <img alt={this.props.data.title}/>
+      <a className="box" href={this.props.data.link}>
+        <h1>{this.props.data.name}</h1>
+        <img src="Bitfiddle.png" alt={this.props.data.name}/>
         <p>
           {this.props.data.description}
         </p>
-      </div>
+      </a>
     );
   }
 }

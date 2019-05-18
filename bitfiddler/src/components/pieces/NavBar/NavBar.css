@@ -6,7 +6,8 @@
   width: 100%;
   position: fixed;
   float: left;
-  top: 0; 
+  top: 0;
+  z-index: 1; 
 }
 
 .title-nav-li {
