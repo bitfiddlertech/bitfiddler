@@ -50,10 +50,15 @@ export function insert(root, z) {
   var x = root;
   while (x != null) {
     y = x;
-    if (z.key < x.key)
+    if (z.key < x.key) {
       x = x.left;
-    else
+      // console.log('1');
+    }
+    else {
       x = x.right;
+      // console.log('2');
+    }
+    // console.log(x);
   }
   z.p = y;
   if (y === null)
@@ -65,60 +70,78 @@ export function insert(root, z) {
   z.left = null;
   z.right = null;
   z.color = "Red";
-  insertFixup(root, z);
+  root = insertFixup(root, z);
+  root = findRoot(root);
+  console.log(root);
   return root;
 }
 
 export function insertFixup(root, z) {
   while (z.p != null && z.p.color === "Red") {
     var y;
+    // console.log(z);
     if (z.p === z.p.p.left) {
       y = z.p.p.right;
       if (y != null && y.color === "Red") {
-        console.log('case 1');
+        // console.log('case 1a');
         z.p.color = "Black";
         y.color = "Black";
         z.p.p.color = "Red";
         z = z.p.p;
+        continue;
       } else if (z === z.p.right) {
+        // console.log('case 2a');
         z = z.p;
         leftRotate(root, z);
       }
+      // console.log('case 3a');
       z.p.color = "Black";
       z.p.p.color = "Red";
       rightRotate(root, z.p.p);
-    } else if (z.p === z.p.p.right) {
+    } else {
       y = z.p.p.left;
       if (y != null && y.color === "Red") {
+        // console.log('case 1b');
         z.p.color = "Black";
         y.color = "Black";
         z.p.p.color = "Red";
         z = z.p.p;
+        continue;
       } else if (z === z.p.left) {
+        // console.log('case 2b');
         z = z.p;
         rightRotate(root, z);
       }
+      // console.log('case 3b');
       z.p.color = "Black";
       z.p.p.color = "Red";
       leftRotate(root, z.p.p);
     }
   }
+  root = findRoot(root);
   root.color = "Black";
+  return root;
+}
+
+export function findRoot(node) {
+  while (node.p != null)
+    node = node.p;
+  return node;
 }
 
 export function preOrder(root) {
   if (root != null) {
-    console.log(root.key + " ");
+    // console.log(root.key + " ");
     preOrder(root.left);
     preOrder(root.right);
   }
 }
 
-var z = initNode(122);
-var root = initNode(10);
-root = insert(root, z);
-z = initNode(1);
-root = insert(root, z);
+// var z = initNode(122);
+// var root = initNode(10);
+// root = insert(root, z);
+// z = initNode(1);
+// root = insert(root, z);
 // z = initNode(3);
 // root = insert(root, z);
 // z = initNode(30);

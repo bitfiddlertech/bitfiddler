@@ -36,6 +36,7 @@ export default class RedBlackTree extends Component {
       root = rb.initNode(Number(this.state.key));
     else {
       var z = rb.initNode(Number(this.state.key));
+      root = this.findRoot(root); 
       root = rb.insert(root, z);
     }
     this.setState({
@@ -45,8 +46,8 @@ export default class RedBlackTree extends Component {
     });
     root = this.findRoot(root);
     this.setTreeDisplayPosition(root);
-    // console.log(root);
     this.displayTree(root);
+    // console.log(root);
   }
   onChangeKey(e) {
     this.setState({
@@ -135,7 +136,6 @@ export default class RedBlackTree extends Component {
     return depth;
   }
   setTreeDisplayPosition(root) {
-    // console.log(root);
     if (root != null) {
       if (root.p == null) {
         root.width = 300;
@@ -169,7 +169,7 @@ export default class RedBlackTree extends Component {
           value={this.state.key}
           onChange={this.onChangeKey}
         />
-        <button onClick={this.addNode} className="btn btn-success">Submit</button>
+        <button onClick={this.addNode} type="submit" className="btn btn-success">Submit</button>
         <br></br>
         <svg id="svg" height="600" width="600">
 

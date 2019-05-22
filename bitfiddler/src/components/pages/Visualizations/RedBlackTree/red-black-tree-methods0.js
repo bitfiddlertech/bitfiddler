@@ -95,7 +95,7 @@
         y.color = "Black";
         z.p.p.color = "Red";
         z = z.p.p;
-        continue;
+        
       } else if (z === z.p.left) {
         z = z.p;
         rightRotate(root, z);
@@ -116,17 +116,17 @@
   }
 }
 
-var z = initNode(66);
-var root = initNode(12);
+var z = initNode(122);
+var root = initNode(10);
 root = insert(root, z);
-z = initNode(55);
+z = initNode(1);
 root = insert(root, z);
-// z = initNode(3);
-// root = insert(root, z);
-// z = initNode(30);
-// root = insert(root, z);
-// z = initNode(2);
-// root = insert(root, z);
+z = initNode(3);
+root = insert(root, z);
+z = initNode(30);
+root = insert(root, z);
+z = initNode(2);
+root = insert(root, z);
 
 console.log(root);
 
