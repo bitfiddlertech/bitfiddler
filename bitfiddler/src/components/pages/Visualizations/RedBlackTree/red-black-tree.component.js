@@ -2,12 +2,8 @@ import React, { Component } from 'react';
 import '../../../../index.css';
 import * as rb from './red-black-tree-methods.js';
 
-// import TreeNode from '../../../pieces/TreeNode/TreeNode';
 import '../../../pieces/TreeNode/TreeNode.css';
-// import Snap from 'snapsvg-cjs';
-// import anime from 'animejs/lib/anime.es.js';
 import * as d3 from 'd3';
-
 
 export default class RedBlackTree extends Component {
   constructor(props) {
@@ -36,7 +32,7 @@ export default class RedBlackTree extends Component {
       root = rb.initNode(Number(this.state.key));
     else {
       var z = rb.initNode(Number(this.state.key));
-      root = this.findRoot(root); 
+      root = this.findRoot(root);
       root = rb.insert(root, z);
     }
     this.setState({
@@ -46,8 +42,7 @@ export default class RedBlackTree extends Component {
     });
     root = this.findRoot(root);
     this.setTreeDisplayPosition(root);
-    this.displayTree(root);
-    // console.log(root);
+    this.displayTree(root, 1);
   }
   onChangeKey(e) {
     this.setState({
@@ -56,70 +51,61 @@ export default class RedBlackTree extends Component {
   }
   displayNode(root) {
     var svg = d3.select("#svg");
+    d3.select("#node-"+root.key).remove();
+    d3.select("#line-"+root.key).remove();
     var node = svg.append("g");
     node.attr("id", "node-"+root.key);
     var color = root.color === "Black" ? "#777" : "#f33";
-    // var startWidth, startHeight;
-    // var depth = this.findDepth(root);
-    // if (root.p == null) {
-    //   startWidth = 300;
-    //   startHeight = 50;
-    //   this.setState({
-    //     nodeWidth: startWidth,
-    //     nodeHeight: startHeight
-    //   });
-    // } else if (root.p.right == root) {
-    //   startWidth = this.state.nodeWidth + 60;
-    //   startHeight = this.state.nodeHeight + (60 * depth);
-    //   this.setState({
-    //     nodeWidth: startWidth,
-    //     nodeHeight: startHeight
-    //   });
-    // } else if (root.p.left == root) {
-    //   startWidth = this.state.nodeWidth - 60;
-    //   startHeight = this.state.nodeHeight + (60 * depth);
-    //   this.setState({
-    //     nodeWidth: startWidth,
-    //     nodeHeight: startHeight
-    //   });
-    // }
+    if (root.p != null) {
+      // d3.select("#node-"+root.p.key).remove();
+      var parentColor = root.p.color === "Black" ? "#777" : "#f33";
+      node.append("line")
+        .attr("x1", root.p.width)
+        .attr("y1", root.p.height)
+        .attr("x2", root.width)
+        .attr("y2", root.height)
+        .attr("id", "line-"+root.key)
+        .style("stroke", "black")
+        .style("stroke-width", "2")
+        .style("position", "relative")
+        .style("z-index", "-1");
+      node.append("circle")
+        .attr("cx", root.p.width)
+        .attr("cy", root.p.height)
+        .attr("r", 25)
+        .style("fill", parentColor)
+        .style("position", "relative")
+        .style("z-index", "1");
+      node.append("text")
+        .attr("x", root.p.width)
+        .attr("y", root.p.height)
+        .style("position", "relative")
+        .style("z-index", "2")
+        .text(root.p.key);
+    }
     node.append("circle")
       .attr("cx", root.width)
       .attr("cy", root.height)
       .attr("r", 25)
-      .style("fill", color);
+      .style("fill", color)
+      .style("position", "relative")
+      .style("z-index", "1");
     node.append("text")
       .attr("x", root.width)
       .attr("y", root.height)
+      .style("position", "relative")
+      .style("z-index", "2")
       .text(root.key);
-    // var node2 = svg.append("g");
-    // node2.append("circle")
-    //   .attr("cx", startWidth + 60)
-    //   .attr("cy", startHeight + 60)
-    //   .attr("r", 25)
-    //   .style("fill", color);
-    // var node3 = svg.append("g");
-    // node3.append("circle")
-    //   .attr("cx", startWidth - 60)
-    //   .attr("cy", startHeight + 60)
-    //   .attr("r", 25)
-    //   .style("fill", color);
-    // var node4 = svg.append("g");
-    // node4.append("circle")
-    //   .attr("cx", startWidth - 120)
-    //   .attr("cy", startHeight + 120)
-    //   .attr("r", 25)
-      // .style("fill", color);
-    // node.transition()
-    //   .duration(1000)
-    //   .attr("transform", "translate(200, 200)")
-
   }
-  displayTree(root) {
-    if (root != undefined) {
+  displayTree(root, firstRun) {
+    if (firstRun === 1) {
+      d3.selectAll("g").remove();
+      firstRun = 0;
+    }
+    if (root != null) {
       this.displayNode(root);
-      this.displayTree(root.right);
-      this.displayTree(root.left);
+      this.displayTree(root.right, firstRun);
+      this.displayTree(root.left, firstRun);
     }
   }
   findRoot(node) {
@@ -138,7 +124,7 @@ export default class RedBlackTree extends Component {
   setTreeDisplayPosition(root) {
     if (root != null) {
       if (root.p == null) {
-        root.width = 300;
+        root.width = 500;
         root.height = 50;
         root.depth = 1;
         this.setState({
@@ -151,6 +137,19 @@ export default class RedBlackTree extends Component {
           root.width = root.p.width - 60;
         root.height = root.p.height + 60;
         root.depth = root.p.depth + 1;
+        // double grandparent to parent width if parent has two children
+        if (root.p.right != null && root.p.left != null && root.p.p != null) {
+          // TODO: modularize
+          if (root.p == root.p.p.right) {
+            root.p.width = root.p.width + 60;
+            root.p.right.width = root.p.right.width + 60;
+            root.p.left.width = root.p.left.width + 60;
+          } else if (root.p == root.p.p.left) {
+            root.p.width = root.p.width - 60;
+            root.p.right.width = root.p.right.width - 60;
+            root.p.left.width = root.p.left.width - 60;
+          }
+        }
         this.setState({
           root: root
         });
@@ -171,9 +170,7 @@ export default class RedBlackTree extends Component {
         />
         <button onClick={this.addNode} type="submit" className="btn btn-success">Submit</button>
         <br></br>
-        <svg id="svg" height="600" width="600">
-
-        </svg>
+        <svg id="svg" height="1000" width="1000"></svg>
       </div>
     );
   }
