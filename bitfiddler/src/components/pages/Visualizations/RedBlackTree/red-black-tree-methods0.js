@@ -95,7 +95,6 @@
         y.color = "Black";
         z.p.p.color = "Red";
         z = z.p.p;
-        
       } else if (z === z.p.left) {
         z = z.p;
         rightRotate(root, z);
@@ -108,6 +107,107 @@
   root.color = "Black";
 }
 
+function transplant(root, u, v) {
+  // console.log(root);
+  if (u.p == null)
+    root = v;
+  else if (u == u.p.left)
+    u.p.left = v;
+  v.p = u.p;
+  // return root;
+}
+
+function deleteNode(root, z) {
+  var y = z;
+  var x;
+  var y_original_color = y.color;
+  if (z.left == null) {
+    x = z.right;
+    transplant(root, z, z.right);
+  } else if (z.right == null) {
+    x = z.left;
+    transplant(root, z, z.left);
+  } else {
+    // y = treeMinimum(z.right);
+    console.log(z);
+    console.log(y);
+    y_original_color = y.color;
+    x = y.right;
+    if (y.p == z)
+      x.p = y;
+    else {
+      transplant(root, y, y.right);
+      y.right = z.right;
+      y.right.p = y;
+    }
+    transplant(root, z, y);
+    y.left = z.left;
+    y.left.p = y;
+    y.color = z.color;
+  }
+  if (y_original_color == "Black")
+    deleteFixup(root, x);
+}
+
+function deleteFixup(root, x) {
+  while (x != root && x.color == "Black") {
+    if (x == x.p.left) {
+      var w = x.p.right;
+      if (w.color == "Red") {
+        w.color = "Black";
+        x.p.color = "Red";
+        leftRotate(root, x.p);
+        w = x.p.right;
+      }
+      if (w.left.color == "Black" && w.right.color == "Black") {
+        w.color = "Red";
+        x = x.p;
+        continue;
+      } else if (w.right.color == "Black") {
+        w.left.color = "Black";
+        w.color = "Red";
+        rightRotate(root, w);
+        w = x.p.right;
+      }
+      w.color = x.p.color;
+      x.p.color = "Black";
+      w.right.color = "Black";
+      leftRotate(root,x.p);
+      x = root;
+    } else if (x == x.p.right) {
+      var w = x.p.left;
+      if (w.color == "Red") {
+        w.color = "Black";
+        x.p.color = "Red";
+        rightRotate(root, x.p);
+        w = x.p.left;
+      }
+      if (w.right.color == "Black" && w.left.color == "Black") {
+        w.color = "Red";
+        x = x.p;
+        continue;
+      } else if (w.left.color == "Black") {
+        w.right.color = "Black";
+        w.color = "Red";
+        leftRotate(root, w);
+        w = x.p.left;
+      }
+      w.color = x.p.color;
+      x.p.color = "Black";
+      w.left.color = "Black";
+      rightRotate(root,x.p);
+      x = root;
+    }
+  }
+  x.color = "Black";
+}
+
+function treeMinimum(node) {
+  while (node.left != null)
+    node = node.left;
+  return node;
+}
+
   function preOrder(root) {
   if (root != null) {
     console.log(root.key + " ");
@@ -116,6 +216,12 @@
   }
 }
 
+// var u = initNode(1);
+// var z = initNode(3);
+// var root = initNode(2);
+// root = insert(root, u);
+// root = transplant(root, u, z);
+// console.log(root);
 var z = initNode(122);
 var root = initNode(10);
 root = insert(root, z);
@@ -128,6 +234,8 @@ root = insert(root, z);
 z = initNode(2);
 root = insert(root, z);
 
-console.log(root);
-
-preOrder(root);
+// console.log(root);
+deleteNode(root, z);
+// console.log(root)
+//
+// preOrder(root);

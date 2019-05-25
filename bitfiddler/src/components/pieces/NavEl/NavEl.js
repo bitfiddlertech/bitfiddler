@@ -4,8 +4,8 @@ import './NavEl.css';
 class NavEl extends React.Component {
   render() {
     return(
-      <li className="nav-li">
-        <a className="nav-el nav-el-underscore" href={this.props.navElement.href}>{this.props.navElement.name}</a>
+      <li className="nav-li nav-el nav-el-underscore">
+        <a className="" href={this.props.navElement.href}><b>{this.props.navElement.name}</b></a>
       </li>
     );
   }

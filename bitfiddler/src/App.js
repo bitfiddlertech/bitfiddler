@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import NavBar from "./components/pieces/NavBar/NavBar";
 import './App.css';
-// import 'bootstrap/dist/css/bootstrap.min.css';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Index from './components/pages/Index/index.component';
 import Visualizations from './components/pages/Visualizations/visualizations.component';
 import About from './components/pages/About/about.component';
@@ -37,7 +36,6 @@ class App extends Component {
       <Router>
         <div className="App">
           <NavBar navElements={navElements}></NavBar>
-
           <Switch>
             <Route exact path="/" component={ Index }/>
             <Route path="/visualizations" component={ Visualizations }/>

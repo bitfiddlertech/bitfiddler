@@ -9,6 +9,7 @@ export default class RedBlackTree extends Component {
   constructor(props) {
     super(props);
     this.addNode = this.addNode.bind(this);
+    this.deleteNode = this.deleteNode.bind(this);
     this.onChangeKey = this.onChangeKey.bind(this);
     this.displayTree = this.displayTree.bind(this);
     this.displayNode = this.displayNode.bind(this);
@@ -24,7 +25,7 @@ export default class RedBlackTree extends Component {
       size: 0
     };
   }
-  addNode(e) {
+  addNode() {
     var root = this.state.root;
     if (this.state.key === "")
       return;
@@ -43,6 +44,9 @@ export default class RedBlackTree extends Component {
     root = this.findRoot(root);
     this.setTreeDisplayPosition(root);
     this.displayTree(root, 1);
+  }
+  deleteNode() {
+
   }
   onChangeKey(e) {
     this.setState({
@@ -142,13 +146,15 @@ export default class RedBlackTree extends Component {
           // TODO: modularize
           if (root.p == root.p.p.right) {
             root.p.width = root.p.width + 60;
-            root.p.right.width = root.p.right.width + 60;
-            root.p.left.width = root.p.left.width + 60;
+            // root.p.right.width = root.p.width + 60;
+            // root.p.left.width = root.p.width - 60;
           } else if (root.p == root.p.p.left) {
             root.p.width = root.p.width - 60;
-            root.p.right.width = root.p.right.width - 60;
-            root.p.left.width = root.p.left.width - 60;
+            // root.p.right.width = root.p.right.width - 60;
+            // root.p.left.width = root.p.left.width - 60;
           }
+          root.p.right.width = root.p.width + 60;
+          root.p.left.width = root.p.width - 60;
         }
         this.setState({
           root: root
@@ -168,7 +174,8 @@ export default class RedBlackTree extends Component {
           value={this.state.key}
           onChange={this.onChangeKey}
         />
-        <button onClick={this.addNode} type="submit" className="btn btn-success">Submit</button>
+        <button onClick={this.addNode} type="submit" className="btn btn-success">Insert</button>
+        <button onClick={this.deleteNode} type="submit" className="btn btn-danger">Delete</button>
         <br></br>
         <svg id="svg" height="1000" width="1000"></svg>
       </div>

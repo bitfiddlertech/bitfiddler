@@ -15,7 +15,7 @@ export default class Visualizations extends Component {
           name: 'Red-Black Tree',
           image: 'Bitfiddle.png',
           link: '/red-black-tree',
-          description: 'A tree for storing data'
+          description: 'A tree for storing dat tree for storing data tree for storing data tree for storing data tree for storing data tree for storing data tree for storing data tree for storing dataa'
         },
         {
           name: 'Binary Search Tree',

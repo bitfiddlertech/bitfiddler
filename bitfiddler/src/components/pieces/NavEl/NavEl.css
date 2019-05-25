@@ -14,12 +14,25 @@
 }
 
 .nav-el:hover {
-  color: #11f;
   border-bottom: 2px solid #11f;
-  margin-left: 10px;
-  text-decoration: none; 
+  text-decoration: none;
+  cursor: pointer;
   transition: .3s;
 }
+
+.nav-el:hover > a {
+  color: #11f;
+  margin-bottom: 10px ;
+  font-size: 18px;
+  transition: .3s;
+}
+
+.nav-el > a {
+  text-decoration: none;
+  color: white;
+  transition: .3s;
+}
+
 
 /* .sticky-nav {
   position: fixed;
