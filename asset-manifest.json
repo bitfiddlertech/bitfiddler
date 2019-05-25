@@ -1,14 +1,14 @@
 {
-  "main.css": "/public/static/css/main.c3d596f3.chunk.css",
-  "main.js": "/public/static/js/main.3137e4f9.chunk.js",
-  "main.js.map": "/public/static/js/main.3137e4f9.chunk.js.map",
-  "runtime~main.js": "/public/static/js/runtime~main.de5d37ed.js",
-  "runtime~main.js.map": "/public/static/js/runtime~main.de5d37ed.js.map",
-  "static/js/2.f2d36965.chunk.js": "/public/static/js/2.f2d36965.chunk.js",
-  "static/js/2.f2d36965.chunk.js.map": "/public/static/js/2.f2d36965.chunk.js.map",
-  "index.html": "/public/index.html",
-  "precache-manifest.f1c4b38b1921a8d183513ce60c27beb3.js": "/public/precache-manifest.f1c4b38b1921a8d183513ce60c27beb3.js",
-  "service-worker.js": "/public/service-worker.js",
-  "static/css/main.c3d596f3.chunk.css.map": "/public/static/css/main.c3d596f3.chunk.css.map",
-  "static/media/Bitfiddle.png": "/public/static/media/Bitfiddle.42c7de7b.png"
+  "main.css": "/bitfiddler/static/css/main.c3d596f3.chunk.css",
+  "main.js": "/bitfiddler/static/js/main.e255fdf9.chunk.js",
+  "main.js.map": "/bitfiddler/static/js/main.e255fdf9.chunk.js.map",
+  "runtime~main.js": "/bitfiddler/static/js/runtime~main.451fab37.js",
+  "runtime~main.js.map": "/bitfiddler/static/js/runtime~main.451fab37.js.map",
+  "static/js/2.f2d36965.chunk.js": "/bitfiddler/static/js/2.f2d36965.chunk.js",
+  "static/js/2.f2d36965.chunk.js.map": "/bitfiddler/static/js/2.f2d36965.chunk.js.map",
+  "index.html": "/bitfiddler/index.html",
+  "precache-manifest.8a7c3a988fc33b9c67663a92ac7fb9e7.js": "/bitfiddler/precache-manifest.8a7c3a988fc33b9c67663a92ac7fb9e7.js",
+  "service-worker.js": "/bitfiddler/service-worker.js",
+  "static/css/main.c3d596f3.chunk.css.map": "/bitfiddler/static/css/main.c3d596f3.chunk.css.map",
+  "static/media/Bitfiddle.png": "/bitfiddler/static/media/Bitfiddle.42c7de7b.png"
 }
