@@ -20,7 +20,7 @@ self.__precacheManifest = [
     "url": "/bitfiddler/static/css/main.c3d596f3.chunk.css"
   },
   {
-    "revision": "93505422a89cde28d07381c5d912ab59",
+    "revision": "00a6dde78940260392f3fdd4e5769330",
     "url": "/bitfiddler/index.html"
   }
 ];
